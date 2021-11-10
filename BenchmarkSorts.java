@@ -235,5 +235,8 @@ public class BenchmarkSorts {
         bs.calculateData();
         //Create the report files for input into the BenchmarkReports app
         bs.generateReport();
+
+        BenchmarkReport report = new BenchmarkReport();
+        report.displayBenchmarkReport();
     }
 }
