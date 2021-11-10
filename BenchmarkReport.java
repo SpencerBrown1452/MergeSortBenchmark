@@ -23,7 +23,7 @@ public class BenchmarkReport {
     /**
      * Display's the report in the a beautiful JTable displayed in a window
      */
-    private void displayBenchmarkReport(){
+    public void displayBenchmarkReport(){
         //Creates a JFrame to hold the benchmark data
         JFrame frame = new JFrame();
         frame.setTitle("Benchmark Report");
@@ -33,7 +33,7 @@ public class BenchmarkReport {
         //Holds the data in the file for transfer to the JTable
         String[][] data = new String[10][5];
         //Allows the user to select the input file
-        JFileChooser chooser = new JFileChooser();
+        JFileChooser chooser = new JFileChooser(".");
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 ".txt Files", "txt");
         chooser.setFileFilter(filter);
@@ -63,6 +63,9 @@ public class BenchmarkReport {
                 JOptionPane.showMessageDialog(null, "File not found");
             }
         }
+        else{
+            System.exit(0);
+        }
         String[] columnNames = {"Size", "Avg Count", "Coef Count", "Avg Time", "Coef Time"};
         JTable benchmarkTable = new JTable(data, columnNames);
         JScrollPane benchmarkScroller = new JScrollPane(benchmarkTable);
@@ -70,10 +73,5 @@ public class BenchmarkReport {
         //Inserts the data into the frame and displays the frame
         frame.getContentPane().add(BorderLayout.CENTER, benchmarkScroller);
         frame.setVisible(true);
-    }
-
-    public static void main (String[] args){
-        BenchmarkReport report = new BenchmarkReport();
-        report.displayBenchmarkReport();
     }
 }
